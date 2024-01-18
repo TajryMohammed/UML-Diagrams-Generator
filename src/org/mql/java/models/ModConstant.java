@@ -1,24 +1,16 @@
 package org.mql.java.models;
 
-
-
 public class ModConstant {
-
-    // Attributes :
 
     private String name;
 
-
-    // Constructors :
-
-    public ModConstant(){}
-
-    public ModConstant(String name){
-        this.name = name;
+    public ModConstant() {
+        // Default constructor
     }
 
-    // Getters & Setters :
-
+    public ModConstant(String name) {
+        this.name = name;
+    }
 
     public String getName() {
         return name;
@@ -28,4 +20,3 @@ public class ModConstant {
         this.name = name;
     }
 }
-

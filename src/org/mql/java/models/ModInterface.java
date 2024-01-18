@@ -1,42 +1,46 @@
 package org.mql.java.models;
 
+import java.util.Set;
 
+public class ModInterface extends ModEntity {
 
-import java.util.List;
+    private Set<ModInterface> implementedInterfaces;
 
-public class ModInterface {
-
-    // Attributes :
-
-    private String name;
-    private List<ModMethod> methods;
-
-    // Constructors :
-
-    public ModInterface(){}
-
-    public ModInterface(String name, List<ModMethod> methods){
-        this.name = name;
-        this.methods = methods;
+    public ModInterface(String interfaceName) {
+        super(interfaceName);
     }
 
-    // Getters & Setters :
-
-
-    public String getName() {
-        return name;
+    public ModInterface(String interfaceName, Set<ModInterface> implementedInterfaces) {
+        super(interfaceName);
+        this.implementedInterfaces = implementedInterfaces;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Set<ModAttribute> getInterfaceAttributes() {
+        return super.getEntityAttributes();
     }
 
-    public List<ModMethod> getMethods() {
-        return methods;
+    public void setInterfaceAttributes(Set<ModAttribute> interfaceAttributes) {
+        super.setEntityAttributes(interfaceAttributes);
     }
 
-    public void setMethods(List<ModMethod> methods) {
-        this.methods = methods;
+    public Set<ModMethod> getInterfaceMethods() {
+        return super.getEntityMethods();
+    }
+
+    public void setInterfaceMethods(Set<ModMethod> interfaceMethods) {
+        super.setEntityMethods(interfaceMethods);
+    }
+
+    public Set<ModInterface> getImplementedInterfaces() {
+        return implementedInterfaces;
+    }
+
+    public void setImplementedInterfaces(Set<ModInterface> implementedInterfaces) {
+        this.implementedInterfaces = implementedInterfaces;
+    }
+
+    @Override
+    public String toString() {
+        return "INTERFACE: " + super.toString();
     }
 }
-

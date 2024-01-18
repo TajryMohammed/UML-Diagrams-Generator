@@ -1,43 +1,44 @@
 package org.mql.java.models;
 
-
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ModPackage {
 
-    // Attributes :
+    private String packageName;
+    private Set<ModEntity> entities;
 
-    private String name;
-    private List<ModClass> classes;
-
-    // Constructors :
-
-    public ModPackage(){}
-
-    public ModPackage(String name, List<ModClass> classes){
-        this.classes = classes;
+    public ModPackage(String packageName) {
+        this.packageName = packageName;
+        entities = new HashSet<>();
     }
 
-
-    // Getters & Setters :
-
-
-    public String getName() {
-        return name;
+    public String getPackageName() {
+        return packageName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPackageName(String packageName) {
+        this.packageName = packageName;
     }
 
-    public List<ModClass> getClasses() {
-        return classes;
+    public Set<ModEntity> getEntities() {
+        return entities;
     }
 
-    public void setClasses(List<ModClass> classes) {
-        this.classes = classes;
+    public void setEntities(Set<ModEntity> entities) {
+        this.entities = entities;
     }
 
+    public void addModEntity(ModEntity newEntity) {
+        entities.add(newEntity);
+    }
 
-
+    @Override
+    public String toString() {
+        StringBuilder packageString = new StringBuilder("\nPackage : " + packageName);
+        for (ModEntity entity : entities) {
+        	packageString.append("\n").append(entity);
+        }
+        return packageString.toString();
+    }
 }

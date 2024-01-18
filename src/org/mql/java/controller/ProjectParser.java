@@ -1,20 +1,55 @@
 package org.mql.java.controller;
 
+import java.io.File;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.Vector;
+import org.mql.java.models.ModEntity;
 import org.mql.java.models.ModPackage;
 import org.mql.java.models.ModProject;
-
-import java.util.List;
+import org.mql.java.models.ModRelationship;
 
 public class ProjectParser {
 
-    public static ModProject parseProject(List<String> packagePaths, String basePath) {
-        ModProject modProject = new ModProject();
-        
-        for (String packagePath : packagePaths) {
-            ModPackage modPackage = PackageParser.parsePackage(packagePath, basePath);
-            modProject.getPackages().add(modPackage);
+    private String projectPath;
+    private ModProject parsedProject;
+
+    public ProjectParser(String projectPath) {
+        this.projectPath = projectPath + "\\bin\\";
+        parsedProject = parseProject();
+        parsedProject.setvRelations(parseRelationships(parsedProject));
+        // ****************************************************************************
+        System.out.println(parsedProject);
+    }
+
+    public ModProject parseProject() {
+        File projectDirectory = new File(projectPath);
+        ModProject project = new ModProject(projectDirectory);
+
+        Set<String> packageList = new HashSet<>();
+        ClassAnalyzer.getPackages(projectPath, packageList);
+
+        for (String packageName : packageList) {
+            ModPackage modPackage = new PackageParser(packageName, projectPath).parse();
+            project.addvPackage(modPackage);
         }
 
-        return modProject;
+        return project;
+    }
+
+    private List<ModRelationship> parseRelationships(ModProject project) {
+        List<ModRelationship> relationships = new Vector<>();
+        EntityRelationAnalyzer relationshipParser = new EntityRelationAnalyzer();
+        for (ModEntity sourceModel : project.getModels()) {
+            for (ModEntity targetModel : project.getModels()) {
+                relationships.addAll(relationshipParser.parseRelationships(sourceModel, targetModel));
+            }
+        }
+        return relationships;
+    }
+
+    public ModProject getParsedProject() {
+        return parsedProject;
     }
 }

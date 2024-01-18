@@ -1,45 +1,28 @@
 package org.mql.java.models;
 
+import java.util.Set;
 
+public class ModEnum extends ModEntity {
+    private Set<ModAttribute> constants;
 
-import java.util.List;
-
-public class ModEnum {
-
-    // Attributes :
-
-    private String name;
-    private List<ModConstant> constantList;
-
-
-
-    // Constructors :
-
-
-    public ModEnum(){}
-
-    public ModEnum(String name, List<ModConstant> constantList){
-        this.name = name;
-        this.constantList = constantList;
+    public ModEnum(String name) {
+        super(name);
     }
 
-    // Getters & Setters :
-
-
-    public String getName() {
-        return name;
+    public Set<ModAttribute> getConstants() {
+        return constants;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setConstants(Set<ModAttribute> constants) {
+        this.constants = constants;
     }
 
-    public List<ModConstant> getConstantList() {
-        return constantList;
+    public void addConstant(ModAttribute newConstant) {
+        constants.add(newConstant);
     }
 
-    public void setConstantList(List<ModConstant> constantList) {
-        this.constantList = constantList;
+    @Override
+    public String toString() {
+        return "ENUM: " + super.toString();
     }
 }
-

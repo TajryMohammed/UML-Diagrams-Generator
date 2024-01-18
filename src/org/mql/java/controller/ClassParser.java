@@ -1,58 +1,47 @@
 package org.mql.java.controller;
 
-import org.mql.java.models.ModAttribute;
-import org.mql.java.models.ModClass;
-import org.mql.java.models.ModMethod;
+import org.mql.java.models.ModEntity;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class ClassParser {
 
-    public static ModClass parseClass(String className, String packageName, String basePath) {
-        ModClass modClass = new ModClass();
-        modClass.setName(className);
-        modClass.setAttributes(getClassAttributes(className, packageName, basePath));
-        modClass.setMethods(getClassMethods(className, packageName, basePath));
-        return modClass;
+    private final Class<?> targetClass;
+
+    public ClassParser(Class<?> targetClass) {
+        this.targetClass = targetClass;
     }
 
-    private static List<ModAttribute> getClassAttributes(String className, String packageName, String basePath) {
-        List<ModAttribute> attributes = new ArrayList<>();
+    public ModEntity parseClass() {
+        ClassInformationExtractor infoExtractor = new ClassInformationExtractor(targetClass);
+        String className = infoExtractor.getClassName();
 
-        try {
-            Class<?> loadedClass = ClassLoader.loadClass(packageName + "." + className, basePath);
+        if (!ClassAnalyzer.isAnnotation(targetClass)) {
+            ModEntity model = createModelBasedOnType(className, infoExtractor);
+            if (model != null) {
+                try {
+                    AttributeParser attributeParser = new AttributeParser();
+                    attributeParser.parseAttributes(targetClass, model);
 
-            for (Field field : loadedClass.getDeclaredFields()) {
-                ModAttribute attribute = new ModAttribute(field.getName(), field.getType().getSimpleName());
-                attributes.add(attribute);
+                    if (!infoExtractor.isEnum()) {
+                        MethodParser methodParser = new MethodParser();
+                        model.setEntityMethods(methodParser.parseMethodsAndConstructors(targetClass));
+                        model.setParentClassName(infoExtractor.getSuperclassName());
+                    }
+
+                    return model;
+                } catch (Exception e) {
+                    // Handle the exception as needed
+                    e.printStackTrace();
+                }
             }
-
-        } catch (Exception e) {
-            System.out.println("Class Not Found: " + e.getMessage());
         }
 
-        return attributes;
+        return null;
     }
 
-    private static List<ModMethod> getClassMethods(String className, String packageName, String basePath) {
-        List<ModMethod> methods = new ArrayList<>();
-
-        try {
-            Class<?> loadedClass = ClassLoader.loadClass(packageName + "." + className, basePath);
-
-            for (Method method : loadedClass.getDeclaredMethods()) {
-                ModMethod modMethod = new ModMethod(method.getName(), method.getReturnType().getSimpleName());
-                methods.add(modMethod);
-            }
-
-        } catch (Exception e) {
-            System.out.println("Class Not Found: " + e.getMessage());
-        }
-
-        return methods;
+    private ModEntity createModelBasedOnType(String className, ClassInformationExtractor extractor) {
+        ModelCreator modelCreator = new ModelCreator();
+        return modelCreator.createModelBasedOnType(className, extractor);
     }
 }
-

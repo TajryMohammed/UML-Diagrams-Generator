@@ -4,33 +4,33 @@ package org.mql.java.models;
 
 public class ModParameter {
     
-	
-	// Attributes:
-    private String name;
-    private String type;
+
+    // Attributes:
+    private String parameterName;
+    private String parameterType;
 
     // Constructors:
     public ModParameter() {}
 
-    public ModParameter(String name, String type) {
-        this.name = name;
-        this.type = type;
+    public ModParameter(String parameterName, String parameterType) {
+        this.parameterName = parameterName;
+        this.parameterType = parameterType;
     }
 
     // Getters & Setters:
-    public String getName() {
-        return name;
+    public String getParameterName() {
+        return parameterName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setParameterName(String parameterName) {
+        this.parameterName = parameterName;
     }
 
-    public String getType() {
-        return type;
+    public String getParameterType() {
+        return parameterType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setParameterType(String parameterType) {
+        this.parameterType = parameterType;
     }
 }

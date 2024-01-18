@@ -1,58 +1,34 @@
 package org.mql.java.models;
 
-
-
 import java.util.List;
 
-public class ModClass {
+public class ModClass extends ModEntity {
 
-    // Attributes :
+    private String parent;
+    private List<ModClass> implementedInterfaces;
 
-    private String name;
-    private List<ModAttribute> attributes;
-    private List<ModMethod> methods;
-    private List<ModConstructor> constructors;
-
-
-
-
-    // Constructors :
-
-    public ModClass(){}
-
-    public ModClass(String name, List<ModAttribute> attributes, List<ModMethod> methods){
-        this.name = name;
-        this.attributes = attributes;
-        this.methods = methods;
+    public ModClass(String name) {
+        super(name);
     }
 
-
-
-    // Getters & Setters :
-
-
-    public String getName() {
-        return name;
+    public String getParent() {
+        return parent;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setParent(String parent) {
+        this.parent = parent;
     }
 
-    public List<ModAttribute> getAttributes() {
-        return attributes;
+    public List<ModClass> getImplementedInterfaces() {
+        return implementedInterfaces;
     }
 
-    public void setAttributes(List<ModAttribute> attributes) {
-        this.attributes = attributes;
+    public void setImplementedInterfaces(List<ModClass> implementedInterfaces) {
+        this.implementedInterfaces = implementedInterfaces;
     }
 
-    public List<ModMethod> getMethods() {
-        return methods;
-    }
-
-    public void setMethods(List<ModMethod> methods) {
-        this.methods = methods;
+    @Override
+    public String toString() {
+        return "CLASS: " + super.toString();
     }
 }
-

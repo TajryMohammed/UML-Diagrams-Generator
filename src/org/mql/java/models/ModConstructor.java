@@ -4,24 +4,18 @@ import java.util.List;
 
 public class ModConstructor {
 
-    // Attributes :
-	private String name;
+    private String name;
     private List<ModParameter> parameters;
 
-    
-    
-    // Constructors :
-    public ModConstructor() {}
+    public ModConstructor() {
+        // Default constructor
+    }
 
     public ModConstructor(String name, List<ModParameter> parameters) {
         this.name = name;
         this.parameters = parameters;
     }
 
-    
-    
-    
-    // Getters & Setters:
     public String getName() {
         return name;
     }

@@ -9,18 +9,16 @@ import java.net.URLClassLoader;
 public class ClassLoader {
 	
 	
-	public static Class<?> loadClass(String name,String BasePath) {
+	public static Class<?> loadClass(String name,String basePath) {
 		try {
-			
-			File file = new File(BasePath);
-			URL[] link = { file.toURI().toURL() };
-			
-			try (URLClassLoader urlcl = new URLClassLoader(link)) {
-				return urlcl.loadClass(name);
-			}
+			File file = new File(basePath);
+			URL[] url = { file.toURI().toURL() };
+			@SuppressWarnings("resource")
+			URLClassLoader urlclassloader = new URLClassLoader(url);
+				return urlclassloader.loadClass(name);
 			
 		} catch (Exception e) {
-			System.out.println("Class Not Found ! : " + e.getMessage());
+			System.out.println("Error : " + e.getMessage() );
 		}
 		return null;
 	}

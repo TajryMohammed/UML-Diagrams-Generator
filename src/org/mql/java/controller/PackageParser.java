@@ -1,32 +1,59 @@
 package org.mql.java.controller;
 
-import org.mql.java.models.ModClass;
+import java.io.File;
+import java.util.List;
+import java.util.ArrayList;
 import org.mql.java.models.ModPackage;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class PackageParser {
 
-    public static ModPackage parsePackage(String packagePath, String basePath) {
-        ModPackage modPackage = new ModPackage();
-        modPackage.setName(packagePath);
+    private final String packageName;
+    private final String packagePath;
 
-        List<ModClass> modClasses = new ArrayList<>();
-        File packageDirectory = new File(basePath + File.separator + packagePath);
+    public PackageParser(String packageName, String packagePath) {
+        this.packageName = packageName;
+        this.packagePath = packagePath;
+    }
 
-        if (packageDirectory.isDirectory()) {
-            for (File file : packageDirectory.listFiles()) {
-                if (file.isFile() && file.getName().endsWith(".class")) {
-                    String className = file.getName().replace(".class", "");
-                    ModClass modClass = ClassParser.parseClass(className, packagePath, basePath);
-                    modClasses.add(modClass);
-                }
+    public List<String> getSubPackages() {
+        List<String> subPackageList = new ArrayList<>();
+        File directory = new File(packagePath + packageName.replace(".", File.separator));
+
+        for (File subPackage : directory.listFiles(File::isDirectory)) {
+            if (subPackage.listFiles(file -> file.isFile() && ClassAnalyzer.isAValidClassFile(file)).length > 0) {
+                subPackageList.add(packageName + "." + subPackage.getName());
             }
         }
+        return subPackageList;
+    }
 
-        modPackage.setClasses(modClasses);
+    public List<String> getSubClasses() {
+        List<String> subClassList = new ArrayList<>();
+        File directory = new File(packagePath + packageName.replace(".", File.separator));
+
+        for (File classFile : directory.listFiles(file -> ClassAnalyzer.isAValidClassFile(file))) {
+            subClassList.add(packageName + "." + classFile.getName().replace(".class", ""));
+        }
+        return subClassList;
+    }
+
+    public ModPackage parse() {
+        ModPackage modPackage = new ModPackage(packageName);
+        getSubClasses().stream()
+		        .map(classFileName -> {
+		            try {
+		                Class<?> targetClass = ClassLoader.loadClass(classFileName, packagePath);
+		                return new ClassParser(targetClass).parseClass();
+		            } catch (Exception e) {
+		                e.printStackTrace();
+		                return null;
+		            }
+		        })
+                .filter(model -> model != null)
+                .forEach(modPackage::addModEntity);
+
         return modPackage;
     }
 }
