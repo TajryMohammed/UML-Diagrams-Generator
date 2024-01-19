@@ -1,4 +1,4 @@
-package org.mql.java.controller;
+package org.mql.java.controller.core;
 
 import org.mql.java.models.ModClass;
 import org.mql.java.models.ModEnum;

@@ -1,6 +1,7 @@
-package org.mql.java.controller;
+package org.mql.java.controller.processing;
 
 
+import org.mql.java.controller.core.ClassAnalyzer;
 import org.mql.java.models.ModMethod;
 
 import java.util.HashSet;

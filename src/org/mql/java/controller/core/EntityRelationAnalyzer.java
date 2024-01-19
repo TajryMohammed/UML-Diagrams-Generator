@@ -1,4 +1,4 @@
-package org.mql.java.controller;
+package org.mql.java.controller.core;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +58,7 @@ public class EntityRelationAnalyzer {
         return (target instanceof ModClass && source instanceof ModInterface &&
                 ((ModClass) target).getImplementedInterfaces() != null &&
                 ((ModClass) target).getImplementedInterfaces().contains(target.getEntityName()))
-                ? createRelationship(target, source, RelationshipType.REALIZATION)
+                ? createRelationship(target, source, RelationshipType.IMLEMENTATION)
                 : null;
     }
 

@@ -3,10 +3,12 @@ package org.mql.java.models;
 import java.util.HashSet;
 import java.util.Set;
 
+
 public class ModPackage {
 
     private String packageName;
     private Set<ModEntity> entities;
+    
 
     public ModPackage(String packageName) {
         this.packageName = packageName;
@@ -33,6 +35,7 @@ public class ModPackage {
         entities.add(newEntity);
     }
 
+  
     @Override
     public String toString() {
         StringBuilder packageString = new StringBuilder("\nPackage : " + packageName);
@@ -41,4 +44,5 @@ public class ModPackage {
         }
         return packageString.toString();
     }
+    
 }

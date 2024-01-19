@@ -33,7 +33,7 @@ public class ModAnnotation {
         this.annotationAttributes = annotationAttributes;
     }
 
-    // Override toString method for better representation
+    
     @Override
     public String toString() {
         return "ModAnnotation{" +

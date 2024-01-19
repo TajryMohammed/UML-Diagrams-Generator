@@ -1,6 +1,6 @@
 package org.mql.java.examples;
 
-import org.mql.java.controller.ProjectParser;
+import org.mql.java.controller.processing.ProjectParser;
 
 
 public class Examples {

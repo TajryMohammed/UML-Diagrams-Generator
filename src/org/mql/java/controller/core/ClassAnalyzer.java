@@ -1,8 +1,9 @@
-package org.mql.java.controller;
+package org.mql.java.controller.core;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Parameter;
@@ -22,7 +23,7 @@ import org.mql.java.models.ModEntity;
 public class ClassAnalyzer {
 
     public ClassAnalyzer() {
-        // Default constructor
+        
     }
 
     public static Modifiers getModifiers(int modifier) {
@@ -48,7 +49,8 @@ public class ClassAnalyzer {
             }
         }
     }
-
+    
+    
     public static Set<ModAttribute> parseAttributes(Class<?> targetClass) {
         Set<ModAttribute> attributes = new HashSet<>();
         for (Field field : targetClass.getDeclaredFields()) {
@@ -66,6 +68,8 @@ public class ClassAnalyzer {
         }
         return attributes;
     }
+    
+    
 
     public static Set<ModMethod> parseConstructors(Class<?> targetClass) {
         Set<ModMethod> constructors = new HashSet<>();

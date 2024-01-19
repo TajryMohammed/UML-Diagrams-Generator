@@ -3,7 +3,8 @@ package org.mql.java.models;
 import java.lang.reflect.Parameter;
 import java.util.List;
 import java.util.Vector;
-import org.mql.java.controller.ClassAnalyzer;
+
+import org.mql.java.controller.core.ClassAnalyzer;
 
 public class ModMethod {
     

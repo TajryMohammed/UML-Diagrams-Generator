@@ -1,5 +1,6 @@
 package org.mql.java.models;
 
+import java.util.List;
 import java.util.Set;
 
 public class ModInterface extends ModEntity {
@@ -38,7 +39,7 @@ public class ModInterface extends ModEntity {
     public void setImplementedInterfaces(Set<ModInterface> implementedInterfaces) {
         this.implementedInterfaces = implementedInterfaces;
     }
-
+  
     @Override
     public String toString() {
         return "INTERFACE: " + super.toString();

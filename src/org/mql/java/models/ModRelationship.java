@@ -2,7 +2,7 @@ package org.mql.java.models;
 
 import org.mql.java.common.RelationshipType;
 
-public class ModRelationship {
+public class ModRelationship{
 
     private RelationshipType relationshipType;
     private String targetEntityName;

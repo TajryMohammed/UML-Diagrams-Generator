@@ -1,4 +1,4 @@
-package org.mql.java.controller;
+package org.mql.java.controller.core;
 
 
 import java.io.File;

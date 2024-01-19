@@ -1,5 +1,8 @@
-package org.mql.java.controller;
+package org.mql.java.controller.processing;
 
+import org.mql.java.controller.core.ClassAnalyzer;
+import org.mql.java.controller.core.ClassInformationExtractor;
+import org.mql.java.controller.core.ModelCreator;
 import org.mql.java.models.ModEntity;
 
 
@@ -31,8 +34,8 @@ public class ClassParser {
 
                     return model;
                 } catch (Exception e) {
-                    // Handle the exception as needed
-                    e.printStackTrace();
+  
+                    System.out.println(e.getMessage());
                 }
             }
         }

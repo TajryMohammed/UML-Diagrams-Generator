@@ -5,7 +5,7 @@ public class ModConstant {
     private String name;
 
     public ModConstant() {
-        // Default constructor
+        
     }
 
     public ModConstant(String name) {

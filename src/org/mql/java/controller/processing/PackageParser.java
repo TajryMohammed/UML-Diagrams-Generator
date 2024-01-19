@@ -1,8 +1,11 @@
-package org.mql.java.controller;
+package org.mql.java.controller.processing;
 
 import java.io.File;
 import java.util.List;
 import java.util.ArrayList;
+
+import org.mql.java.controller.core.ClassAnalyzer;
+import org.mql.java.controller.core.ClassLoader;
 import org.mql.java.models.ModPackage;
 
 

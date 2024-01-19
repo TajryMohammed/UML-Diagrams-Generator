@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Projects>
+	<package name="org.mql.java.actions">
+		<class name="FileAction">
+			<method name="save" return-type="String"/>
+			<method name="newFile" return-type="String"/>
+			<method name="FileAction" return-type="null"/>
+			<method name="open" return-type="String"/>
+			<method name="saveAs" return-type="String"/>
+			<method name="exit" return-type="String"/>
+		</class>
+		<class name="EditAction">
+			<method name="EditAction" return-type="null"/>
+			<method name="copy" return-type="String"/>
+			<method name="paste" return-type="String"/>
+			<method name="cut" return-type="String"/>
+		</class>
+	</package>
+	<package name="org.mql.java.reflection">
+		<class name="Examples">
+			<method name="exp01" return-type="void"/>
+			<method name="exp03" return-type="void"/>
+			<method name="exp05" return-type="void"/>
+			<method name="exp06" return-type="void"/>
+			<method name="exp08" return-type="void"/>
+			<method name="exp04" return-type="void"/>
+			<method name="Examples" return-type="null"/>
+			<method name="main" return-type="void"/>
+			<method name="exp02" return-type="void"/>
+			<method name="exp07" return-type="void"/>
+		</class>
+		<class name="PackageExplorer">
+			<method name="scan" return-type="String[]"/>
+			<method name="scanWithClassLoader" return-type="String[]"/>
+			<method name="PackageExplorer" return-type="null"/>
+		</class>
+		<class name="FormGenerator">
+			<method name="FormGenerator" return-type="null"/>
+			<method name="generate" return-type="Form"/>
+		</class>
+	</package>
+	<package name="org.mql.java.ui">
+		<class name="Form">
+			<attribute name="labelSize" type="int"/>
+			<attribute name="serialVersionUID" type="long"/>
+			<attribute name="container" type="JPanel"/>
+			<method name="add" return-type="void"/>
+			<method name="Form" return-type="null"/>
+		</class>
+		<class name="ItemListener">
+			<attribute name="method" type="Method"/>
+			<attribute name="controller" type="Object"/>
+			<method name="ItemListener" return-type="null"/>
+			<method name="actionPerformed" return-type="void"/>
+		</class>
+		<class name="Menu">
+			<attribute name="serialVersionUID" type="long"/>
+			<attribute name="type" type="String"/>
+			<attribute name="iconsPath" type="String"/>
+			<method name="Menu" return-type="null"/>
+			<method name="add" return-type="void"/>
+			<method name="CreerMenu" return-type="void"/>
+			<method name="Menu" return-type="null"/>
+			<method name="add" return-type="void"/>
+		</class>
+		<class name="LabeledTextField">
+			<attribute name="serialVersionUID" type="long"/>
+			<method name="LabeledTextField" return-type="null"/>
+			<method name="LabeledTextField" return-type="null"/>
+		</class>
+	</package>
+	<package name="org.mql.java.models">
+		<interface name="Teeeest">
+		</interface>
+		<class name="Author">
+			<attribute name="name" type="String"/>
+			<attribute name="yearBorn" type="int"/>
+			<attribute name="technology" type="String"/>
+			<attribute name="id" type="int"/>
+			<method name="Author" return-type="null"/>
+			<method name="getYearBorn" return-type="int"/>
+			<method name="getTechnology" return-type="String"/>
+			<method name="toString" return-type="String"/>
+			<method name="getId" return-type="int"/>
+			<method name="setName" return-type="void"/>
+			<method name="getName" return-type="String"/>
+			<method name="Author" return-type="null"/>
+			<method name="setYearBorn" return-type="void"/>
+			<method name="setTechnology" return-type="void"/>
+			<method name="setId" return-type="void"/>
+		</class>
+		<class name="Document">
+			<attribute name="id" type="int"/>
+			<attribute name="title" type="String"/>
+			<attribute name="yearPublished" type="int"/>
+			<attribute name="publisher" type="String"/>
+			<method name="Document" return-type="null"/>
+		</class>
+	</package>
+	<package name="org.mql.java.annotations">
+	</package>
+</Projects>

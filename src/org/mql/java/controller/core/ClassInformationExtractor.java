@@ -1,4 +1,4 @@
-package org.mql.java.controller;
+package org.mql.java.controller.core;
 
 
 public class ClassInformationExtractor {

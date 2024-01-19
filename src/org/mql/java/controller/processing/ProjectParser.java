@@ -1,10 +1,13 @@
-package org.mql.java.controller;
+package org.mql.java.controller.processing;
 
 import java.io.File;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.Vector;
+
+import org.mql.java.controller.core.ClassAnalyzer;
+import org.mql.java.controller.core.EntityRelationAnalyzer;
 import org.mql.java.models.ModEntity;
 import org.mql.java.models.ModPackage;
 import org.mql.java.models.ModProject;
@@ -19,9 +22,10 @@ public class ProjectParser {
         this.projectPath = projectPath + "\\bin\\";
         parsedProject = parseProject();
         parsedProject.setvRelations(parseRelationships(parsedProject));
-        // ****************************************************************************
-        System.out.println(parsedProject);
+        displayParsedProject();
     }
+    
+    
 
     public ModProject parseProject() {
         File projectDirectory = new File(projectPath);
@@ -37,6 +41,9 @@ public class ProjectParser {
 
         return project;
     }
+    
+    
+    
 
     private List<ModRelationship> parseRelationships(ModProject project) {
         List<ModRelationship> relationships = new Vector<>();
@@ -49,6 +56,14 @@ public class ProjectParser {
         return relationships;
     }
 
+    
+    
+    
+    
+    private void displayParsedProject() {
+        System.out.println(parsedProject);
+    }
+    
     public ModProject getParsedProject() {
         return parsedProject;
     }

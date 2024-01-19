@@ -52,6 +52,7 @@ public class ModEntity {
     public void setParentClassName(String parentClassName) {
         this.parentClassName = parentClassName;
     }
+    
 
     @Override
     public String toString() {

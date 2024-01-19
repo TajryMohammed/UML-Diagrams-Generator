@@ -1,5 +1,6 @@
 package org.mql.java.models;
 
+import java.util.List;
 import java.util.Set;
 
 public class ModEnum extends ModEntity {
