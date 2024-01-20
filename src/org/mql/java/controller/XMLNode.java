@@ -1,171 +1,64 @@
 package org.mql.java.controller;
 
+import javax.xml.parsers.*;
 
-import java.util.LinkedList;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
+import org.mql.java.models.ClassEntity;
+import org.mql.java.ui.ClassPanel;
 import org.w3c.dom.*;
-import org.w3c.dom.Node;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
-/*Parseur XML*/
 
 public class XMLNode {
-	
-	private Node node;
-	private XMLNode children[]; // les nodes elements
-	
-	
-	
-	public XMLNode(String source) {
-		DocumentBuilderFactory factory = DocumentBuilderFactory.newDefaultInstance();
-		factory.setValidating(true); // pour verifier que le document est valide (c'est un parseur validant DTD XSD)
-		try {
-			DocumentBuilder builder = factory.newDocumentBuilder();
-			Document document = builder.parse(source);  // permet d'analyser le ficher d'entrer
-			
-			
-			// document.getDocumentElement();  // Element
-			Node node = document.getFirstChild();  // Get Root Element (element racine)
-			while (node.getNodeType() != Node.ELEMENT_NODE) {
-				node = node.getNextSibling();
-			}
-			
-			
-			setNode(node);
-			
-			System.out.println(
-					node.getNodeName() + " , " + 
-					node.getNodeType() + " , " + 
-					node.getNodeValue()		
-				);
-			
-			
-			
-			
-			System.out.println("Comment Node : " + Node.COMMENT_NODE);
-			System.out.println("Element Node : " + Node.ELEMENT_NODE);
-			System.out.println("Document Type Node : " + Node.DOCUMENT_TYPE_NODE);
-			
-			
-					
-		}catch(Exception e) {
-			System.out.println("Erreur : " + e.getMessage());
-		}
-		
-	}
-	
-	
-	public XMLNode(Node node) {
-		super();
-		setNode(node);
-	}
+    public Document parseXML(String xmlFilePath) throws Exception {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        return builder.parse(new File(xmlFilePath));
+    }
 
+    public List<ClassEntity> extractClassEntities(Document document, int frameWidth) {
+        List<ClassEntity> classEntities = new ArrayList<>();
 
+        NodeList classNodes = document.getElementsByTagName("class");
+        NodeList interfaceNodes = document.getElementsByTagName("interface");
 
+        int numColumns = calculateNumColumns(frameWidth);
+        int currentColumn = 0;
+        int currentRow = 0;
 
-	public void setNode(Node node) {
-		this.node = node;
-		extractChildren(); // va extraire les enfants
-	}
-	
-	
-	private void extractChildren() {
-		NodeList list = node.getChildNodes();
-		
-		LinkedList<XMLNode> nodes = new LinkedList<XMLNode>();
-		
-		
-		for(int i=0 ; i< list.getLength() ; i++) {
-			
-			if(list.item(i).getNodeType() == Node.ELEMENT_NODE) {
-				
-				nodes.add(new XMLNode(list.item(i)));
-				
-				//System.out.println(list.item(i).getNodeName());// afficher chaque node
-			}	
-		}
-				
-		
-		children = new XMLNode[nodes.size()];
-		nodes.toArray(children);
-	}
-	
-	
-	
-	
-	public Node getNode() {
-		return node;
-	}
+        // ajouter classes
+        for (int i = 0; i < classNodes.getLength(); i++) {
+            Element classElement = (Element) classNodes.item(i);
+            classEntities.add(new ClassEntity(classElement, currentColumn * (ClassEntity.MIN_WIDTH + ClassPanel.MARGIN),
+                    currentRow * (ClassEntity.MIN_HEIGHT + ClassPanel.MARGIN)));
 
-	
-	public String getName() {   // Delegate Method
-		return node.getNodeName();
-	}
-	
+            currentColumn++;
+            if (currentColumn >= numColumns) {
+                currentColumn = 0;
+                currentRow++;
+            }
+        }
 
-	public boolean isNamed(String name) {
-		return node.getNodeName().equals(name);
-	}
-	
-	
-	public XMLNode[] getChildren() {
-		return children;
-	}
+        // ajouterr interfaces
+        for (int i = 0; i < interfaceNodes.getLength(); i++) {
+            Element interfaceElement = (Element) interfaceNodes.item(i);
+            classEntities.add(new ClassEntity(interfaceElement, currentColumn * (ClassEntity.MIN_WIDTH + ClassPanel.MARGIN),
+                    currentRow * (ClassEntity.MIN_HEIGHT + ClassPanel.MARGIN)));
 
+            currentColumn++;
+            if (currentColumn >= numColumns) {
+                currentColumn = 0;
+                currentRow++;
+            }
+        }
 
-	
-	
-	public void setChildren(XMLNode[] children) {
-		this.children = children;
-	}
-	
-	
-	
-	public XMLNode getChild(String name) {
-		for(XMLNode child : children) {
-			if(child.isNamed(name)) {
-				return child;
-			}
-		}
-		return null;
-	}
-	
-	
-	
-	public String getValue() {
-		Node child = node.getFirstChild();
-		if(child != null && child.getNodeType() == Node.TEXT_NODE) {
-			return child.getNodeValue();
-		}
-		return "";
-	}
-	
-	
-	// to get attributs we use getAttributs()  --- getNamedItems() 
-	
-	public String getAttribute(String name) {
-		Node att = node.getAttributes().getNamedItem("id");
-		if(att == null) return "";	
-		return att.getNodeValue();
-	
-	}
-	
-	
-	public int getIntAttribute(String name) {
-		
-		String s = getAttribute(name);
-		int value = 0; // default value
-		try {
-			value = Integer.parseInt(s);
-			
-		}catch (Exception e) {
-			System.out.println("Erreur : " + e.getMessage());
-		}
-		
-		return value;
-	}
+        return classEntities;
+    }
 
-
+    private int calculateNumColumns(int frameWidth) {
+        int availableWidth = frameWidth - ClassPanel.MARGIN;
+        int entityWidth = ClassEntity.MIN_WIDTH + ClassPanel.MARGIN;
+        return Math.max(1, availableWidth / entityWidth);
+    }
 }

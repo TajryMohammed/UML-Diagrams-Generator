@@ -4,6 +4,7 @@ import java.lang.reflect.Parameter;
 import java.util.List;
 import java.util.Vector;
 
+
 import org.mql.java.controller.core.ClassAnalyzer;
 
 public class ModMethod {
@@ -13,7 +14,8 @@ public class ModMethod {
     private int methodModifier;
     private boolean isConstructor;
     private String returnType;
-
+    
+   
     public ModMethod() {
         methodParameters = new Vector<>();
     }

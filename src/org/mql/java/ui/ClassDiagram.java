@@ -1,22 +1,32 @@
 package org.mql.java.ui;
 
 
+import javax.swing.*;
 
-import javax.swing.JFrame;
 
-public class ClassDiagram extends JFrame{
-
+public class ClassDiagram extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+
+	
 	
 	public ClassDiagram() {
+    	
+    	
+        this.setSize(1200, 1000);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setTitle("Class Diagram");
+        this.setLocationRelativeTo(null);
 
+        
+        try {
+            ClassPanel classPanel = new ClassPanel("resources/project_structure.xml", getWidth());
+            add(classPanel);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
     }
-	
 
-	public static void main(String[] args) {
-		
-	
-	}
-	
+    
 }

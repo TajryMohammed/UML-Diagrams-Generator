@@ -1,5 +1,7 @@
 package org.mql.java.controller;
 
+import org.mql.java.common.Modifiers;
+import org.mql.java.controller.core.ClassAnalyzer;
 import org.mql.java.controller.processing.ProjectParser;
 import org.mql.java.models.*;
 
@@ -76,12 +78,17 @@ public class XmlExporter {
     private static void writeAttributes(FileWriter writer, Set<ModAttribute> attributes) throws IOException {
         if (attributes != null) {
             for (ModAttribute attribute : attributes) {
+                String modifierType = getModifierType(attribute.getModifier());
                 String simpleTypeName = getSimpleTypeName(attribute.getAttributeType());
-                
+
                 writer.write("\t\t\t<attribute name=\"" + attribute.getAttributeName() +
-                        "\" type=\"" + simpleTypeName + "\"/>\n");
+                        "\" type=\"" + simpleTypeName + "\" modifierType=\"" + modifierType + "\"/>\n");
             }
         }
+    }
+
+    private static String getModifierType(int modifier) {
+        return ClassAnalyzer.getModifiers(modifier).getLabel();
     }
 
     private static String getSimpleTypeName(Type type) {
@@ -93,11 +100,13 @@ public class XmlExporter {
             return type.getTypeName();
         }
     }
-    
+
     private static void writeMethods(FileWriter writer, Set<ModMethod> methods) throws IOException {
         if (methods != null) {
             for (ModMethod method : methods) {
-                writer.write("\t\t\t<method name=\"" + method.getMethodName() + "\" return-type=\"" + method.getReturnType() + "\"/>\n");
+                String modifierType = getModifierType(method.getMethodModifier());
+                writer.write("\t\t\t<method name=\"" + method.getMethodName() + "\" return-type=\"" +
+                        method.getReturnType() + "\" modifierType=\"" + modifierType + "\"/>\n");
             }
         }
     }
@@ -108,13 +117,11 @@ public class XmlExporter {
                     constant.getAttributeType().getTypeName() + "\" />\n");
         }
     }
-    
-    
-    
+
     /* !!!!!!!!!!!!!!! just for testing !!!!!!!!!!!!!!!!!*/
 
     public static void main(String[] args) {
-       
+
         ProjectParser projectParser = new ProjectParser("D:\\Eng-cours\\Dev\\Java Advanced\\Java WorkSpace\\p03-Annotaions and Reflection");
         ModProject project = projectParser.getParsedProject();
         exportToXml(project, "resources/project_structure.xml");

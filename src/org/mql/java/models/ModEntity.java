@@ -53,6 +53,21 @@ public class ModEntity {
         this.parentClassName = parentClassName;
     }
     
+    /* **************************** */
+    
+   
+
+    public void addAttribute(ModAttribute modAttribute) {
+        entityAttributes.add(modAttribute);
+    }
+
+    public void addMethod(ModMethod modMethod) {
+        entityMethods.add(modMethod);
+    }
+
+    /* ****************************** */
+    
+    
 
     @Override
     public String toString() {

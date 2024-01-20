@@ -12,6 +12,7 @@ public enum RelationshipType {
     COMPOSITION("-----*"),
     GENERALIZATION("-----|>"),
     IMLEMENTATION(".....|>"),
+    INHERITANCE("______>")
     ;
 
     private String symbol;

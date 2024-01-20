@@ -47,6 +47,34 @@ public class ModRelationship{
         this.targetEntity = targetEntity;
     }
 
+    
+    /**/
+    
+    
+    private ModClassPosition sourceClassPosition;
+    private ModClassPosition targetClassPosition;
+
+    public ModRelationship(ModClassPosition sourceClassPosition, ModClassPosition targetClassPosition, RelationshipType relationshipType) {
+        this.sourceClassPosition = sourceClassPosition;
+        this.targetClassPosition = targetClassPosition;
+        this.relationshipType = relationshipType;
+    }
+
+   
+
+    public ModClassPosition getSourceClassPosition() {
+        return sourceClassPosition;
+    }
+
+    public ModClassPosition getTargetClassPosition() {
+        return targetClassPosition;
+    }
+    
+    
+    /**/
+    
+    
+    
     @Override
     public String toString() {
         return sourceEntity.getEntityName() + " " + relationshipType.name() + " " +
