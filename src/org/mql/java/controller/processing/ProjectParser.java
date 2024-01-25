@@ -15,56 +15,47 @@ import org.mql.java.models.ModRelationship;
 
 public class ProjectParser {
 
-    private String projectPath;
-    private ModProject parsedProject;
+	private String projectPath;
+	private ModProject parsedProject;
 
-    public ProjectParser(String projectPath) {
-        this.projectPath = projectPath + "\\bin\\";
-        parsedProject = parseProject();
-        parsedProject.setvRelations(parseRelationships(parsedProject));
-        displayParsedProject();
-    }
-    
-    
+	public ProjectParser(String projectPath) {
+		this.projectPath = projectPath + "\\bin\\";
+		parsedProject = parseProject();
+		parsedProject.setvRelations(parseRelationships(parsedProject));
+		displayParsedProject();
+	}
 
-    public ModProject parseProject() {
-        File projectDirectory = new File(projectPath);
-        ModProject project = new ModProject(projectDirectory);
+	public ModProject parseProject() {
+		File projectDirectory = new File(projectPath);
+		ModProject project = new ModProject(projectDirectory);
 
-        Set<String> packageList = new HashSet<>();
-        ClassAnalyzer.getPackages(projectPath, packageList);
+		Set<String> packageList = new HashSet<>();
+		ClassAnalyzer.getPackages(projectPath, packageList);
 
-        for (String packageName : packageList) {
-            ModPackage modPackage = new PackageParser(packageName, projectPath).parse();
-            project.addvPackage(modPackage);
-        }
+		for (String packageName : packageList) {
+			ModPackage modPackage = new PackageParser(packageName, projectPath).parse();
+			project.addvPackage(modPackage);
+		}
 
-        return project;
-    }
-    
-    
-    
+		return project;
+	}
 
-    private List<ModRelationship> parseRelationships(ModProject project) {
-        List<ModRelationship> relationships = new Vector<>();
-        EntityRelationAnalyzer relationshipParser = new EntityRelationAnalyzer();
-        for (ModEntity sourceModel : project.getModels()) {
-            for (ModEntity targetModel : project.getModels()) {
-                relationships.addAll(relationshipParser.parseRelationships(sourceModel, targetModel));
-            }
-        }
-        return relationships;
-    }
+	private List<ModRelationship> parseRelationships(ModProject project) {
+		List<ModRelationship> relationships = new Vector<>();
+		EntityRelationAnalyzer relationshipParser = new EntityRelationAnalyzer();
+		for (ModEntity sourceModel : project.getModels()) {
+			for (ModEntity targetModel : project.getModels()) {
+				relationships.addAll(relationshipParser.parseRelationships(sourceModel, targetModel));
+			}
+		}
+		return relationships;
+	}
 
-    
-    
-    
-    
-    private void displayParsedProject() {
-        System.out.println(parsedProject);
-    }
-    
-    public ModProject getParsedProject() {
-        return parsedProject;
-    }
+	private void displayParsedProject() {
+		System.out.println(parsedProject);
+	}
+
+	public ModProject getParsedProject() {
+		return parsedProject;
+	}
 }

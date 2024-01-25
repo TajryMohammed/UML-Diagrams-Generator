@@ -11,8 +11,8 @@ public enum RelationshipType {
     AGGREGATION("-----o"),
     COMPOSITION("-----*"),
     GENERALIZATION("-----|>"),
-    IMLEMENTATION(".....|>"),
-    INHERITANCE("______>")
+    IMPLEMENTATION(".....|>"),
+    UNKNOWN(""),
     ;
 
     private String symbol;

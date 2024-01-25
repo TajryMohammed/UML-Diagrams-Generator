@@ -2,82 +2,59 @@ package org.mql.java.models;
 
 import org.mql.java.common.RelationshipType;
 
-public class ModRelationship{
+public class ModRelationship {
 
-    private RelationshipType relationshipType;
-    private String targetEntityName;
-    private ModEntity sourceEntity;
-    private ModEntity targetEntity;
+	private RelationshipType relationshipType;
+	private String targetEntityName;
+	private ModEntity sourceEntity;
+	private ModEntity targetEntity;
 
-    public ModRelationship(ModEntity sourceEntity, ModEntity targetEntity, RelationshipType relationshipType) {
-        this.sourceEntity = sourceEntity;
-        this.targetEntity = targetEntity;
-        this.relationshipType = relationshipType;
-    }
+	public ModRelationship(ModEntity sourceEntity, ModEntity targetEntity, RelationshipType relationshipType) {
+		this.sourceEntity = sourceEntity;
+		this.targetEntity = targetEntity;
+		this.relationshipType = relationshipType;
+	}
 
-    public RelationshipType getRelationshipType() {
-        return relationshipType;
-    }
+	public ModRelationship(RelationshipType relationshipType) {
+		this.relationshipType = relationshipType;
+	}
 
-    public void setRelationshipType(RelationshipType relationshipType) {
-        this.relationshipType = relationshipType;
-    }
+	public RelationshipType getRelationshipType() {
+		return relationshipType;
+	}
 
-    public String getTargetEntityName() {
-        return targetEntityName;
-    }
+	public void setRelationshipType(RelationshipType relationshipType) {
+		this.relationshipType = relationshipType;
+	}
 
-    public void setTargetEntityName(String targetEntityName) {
-        this.targetEntityName = targetEntityName;
-    }
+	public String getTargetEntityName() {
+		return targetEntityName;
+	}
 
-    public ModEntity getSourceEntity() {
-        return sourceEntity;
-    }
+	public void setTargetEntityName(String targetEntityName) {
+		this.targetEntityName = targetEntityName;
+	}
 
-    public void setSourceEntity(ModEntity sourceEntity) {
-        this.sourceEntity = sourceEntity;
-    }
+	public ModEntity getSourceEntity() {
+		return sourceEntity;
+	}
 
-    public ModEntity getTargetEntity() {
-        return targetEntity;
-    }
+	public void setSourceEntity(ModEntity sourceEntity) {
+		this.sourceEntity = sourceEntity;
+	}
 
-    public void setTargetEntity(ModEntity targetEntity) {
-        this.targetEntity = targetEntity;
-    }
+	public ModEntity getTargetEntity() {
+		return targetEntity;
+	}
 
-    
-    /**/
-    
-    
-    private ModClassPosition sourceClassPosition;
-    private ModClassPosition targetClassPosition;
+	public void setTargetEntity(ModEntity targetEntity) {
+		this.targetEntity = targetEntity;
+	}
 
-    public ModRelationship(ModClassPosition sourceClassPosition, ModClassPosition targetClassPosition, RelationshipType relationshipType) {
-        this.sourceClassPosition = sourceClassPosition;
-        this.targetClassPosition = targetClassPosition;
-        this.relationshipType = relationshipType;
-    }
+	@Override
+	public String toString() {
+		return sourceEntity.getEntityName() + " " + relationshipType.name() + " " + relationshipType.getSymbol() + " "
+				+ targetEntity.getEntityName() + "\n";
+	}
 
-   
-
-    public ModClassPosition getSourceClassPosition() {
-        return sourceClassPosition;
-    }
-
-    public ModClassPosition getTargetClassPosition() {
-        return targetClassPosition;
-    }
-    
-    
-    /**/
-    
-    
-    
-    @Override
-    public String toString() {
-        return sourceEntity.getEntityName() + " " + relationshipType.name() + " " +
-                relationshipType.getSymbol() + " " + targetEntity.getEntityName() + "\n";
-    }
 }

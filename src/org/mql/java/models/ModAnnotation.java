@@ -4,41 +4,39 @@ import java.util.List;
 
 public class ModAnnotation {
 
-    // Properties
-    private String annotationName;
-    private List<ModAttribute> annotationAttributes;
+	// Attributes
+	private String annotationName;
+	private List<ModAttribute> annotationAttributes;
 
-    // Constructors
-    public ModAnnotation() {}
+	// Constructors
+	public ModAnnotation() {
+	}
 
-    public ModAnnotation(String annotationName, List<ModAttribute> annotationAttributes) {
-        this.annotationName = annotationName;
-        this.annotationAttributes = annotationAttributes;
-    }
+	public ModAnnotation(String annotationName, List<ModAttribute> annotationAttributes) {
+		this.annotationName = annotationName;
+		this.annotationAttributes = annotationAttributes;
+	}
 
-    // Getters & Setters
-    public String getAnnotationName() {
-        return annotationName;
-    }
+	// Getters & Setters
+	public String getAnnotationName() {
+		return annotationName;
+	}
 
-    public void setAnnotationName(String annotationName) {
-        this.annotationName = annotationName;
-    }
+	public void setAnnotationName(String annotationName) {
+		this.annotationName = annotationName;
+	}
 
-    public List<ModAttribute> getAnnotationAttributes() {
-        return annotationAttributes;
-    }
+	public List<ModAttribute> getAnnotationAttributes() {
+		return annotationAttributes;
+	}
 
-    public void setAnnotationAttributes(List<ModAttribute> annotationAttributes) {
-        this.annotationAttributes = annotationAttributes;
-    }
+	public void setAnnotationAttributes(List<ModAttribute> annotationAttributes) {
+		this.annotationAttributes = annotationAttributes;
+	}
 
-    
-    @Override
-    public String toString() {
-        return "ModAnnotation{" +
-                "annotationName='" + annotationName + '\'' +
-                ", annotationAttributes=" + annotationAttributes +
-                '}';
-    }
+	@Override
+	public String toString() {
+		return "ModAnnotation{" + "annotationName='" + annotationName + '\'' + ", annotationAttributes="
+				+ annotationAttributes + '}';
+	}
 }

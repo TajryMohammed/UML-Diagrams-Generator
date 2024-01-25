@@ -2,21 +2,21 @@ package org.mql.java.models;
 
 public class ModConstant {
 
-    private String name;
+	private String name;
 
-    public ModConstant() {
-        
-    }
+	public ModConstant() {
 
-    public ModConstant(String name) {
-        this.name = name;
-    }
+	}
 
-    public String getName() {
-        return name;
-    }
+	public ModConstant(String name) {
+		this.name = name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 }

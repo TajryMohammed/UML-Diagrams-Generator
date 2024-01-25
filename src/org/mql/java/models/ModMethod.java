@@ -4,85 +4,83 @@ import java.lang.reflect.Parameter;
 import java.util.List;
 import java.util.Vector;
 
-
 import org.mql.java.controller.core.ClassAnalyzer;
 
 public class ModMethod {
-    
-    private String methodName;
-    private List<Parameter> methodParameters;
-    private int methodModifier;
-    private boolean isConstructor;
-    private String returnType;
-    
-   
-    public ModMethod() {
-        methodParameters = new Vector<>();
-    }
 
-    public String getMethodName() {
-        return methodName;
-    }
+	private String methodName;
+	private List<Parameter> methodParameters;
+	private int methodModifier;
+	private boolean isConstructor;
+	private String returnType;
 
-    public void setMethodName(String methodName) {
-        this.methodName = methodName;
-    }
+	public ModMethod() {
+		methodParameters = new Vector<>();
+	}
 
-    public List<Parameter> getMethodParameters() {
-        return methodParameters;
-    }
+	public String getMethodName() {
+		return methodName;
+	}
 
-    public void setMethodParameters(List<Parameter> methodParameters) {
-        this.methodParameters = methodParameters;
-    }
+	public void setMethodName(String methodName) {
+		this.methodName = methodName;
+	}
 
-    public int getMethodModifier() {
-        return methodModifier;
-    }
+	public List<Parameter> getMethodParameters() {
+		return methodParameters;
+	}
 
-    public void setMethodModifier(int methodModifier) {
-        this.methodModifier = methodModifier;
-    }
+	public void setMethodParameters(List<Parameter> methodParameters) {
+		this.methodParameters = methodParameters;
+	}
 
-    public boolean isConstructor() {
-        return isConstructor;
-    }
+	public int getMethodModifier() {
+		return methodModifier;
+	}
 
-    public void setConstructor(boolean isConstructor) {
-        this.isConstructor = isConstructor;
-    }
+	public void setMethodModifier(int methodModifier) {
+		this.methodModifier = methodModifier;
+	}
 
-    public String getReturnType() {
-        return returnType;
-    }
+	public boolean isConstructor() {
+		return isConstructor;
+	}
 
-    public void setReturnType(String returnType) {
-        this.returnType = returnType;
-    }
+	public void setConstructor(boolean isConstructor) {
+		this.isConstructor = isConstructor;
+	}
 
-    @Override
-    public String toString() {
-        StringBuilder methodString = new StringBuilder();
-        methodString.append(ClassAnalyzer.getModifiers(methodModifier).getLabel()).append(" ");
-        methodString.append(getMethodName()).append("(");
+	public String getReturnType() {
+		return returnType;
+	}
 
-        for (int i = 0; i < getMethodParameters().size(); i++) {
-            Parameter parameter = getMethodParameters().get(i);
-            methodString.append(parameter.getName())
-                        .append(" ")
-                        .append(ClassAnalyzer.getShortForm(parameter.getParameterizedType()));
+	public void setReturnType(String returnType) {
+		this.returnType = returnType;
+	}
 
-            if (i < getMethodParameters().size() - 1) {
-                methodString.append(", ");
-            }
-        }
+	@Override
+	public String toString() {
+		StringBuilder methodString = new StringBuilder();
+		methodString.append(ClassAnalyzer.getModifiers(methodModifier).getLabel()).append(" ");
+		methodString.append(getMethodName()).append("(");
 
-        methodString.append(")");
+		for (int i = 0; i < getMethodParameters().size(); i++) {
+			Parameter parameter = getMethodParameters().get(i);
+			methodString.append(parameter.getName()).append(" ")
+					.append(ClassAnalyzer.getShortForm(parameter.getParameterizedType()));
 
-        if (!isConstructor) {
-            methodString.append(": ").append(returnType);
-        }
+			if (i < getMethodParameters().size() - 1) {
+				methodString.append(", ");
+			}
+		}
 
-        return methodString.toString();
-    }
+		methodString.append(")");
+
+		if (!isConstructor) {
+			methodString.append(": ").append(returnType);
+		}
+
+		return methodString.toString();
+	}
+
 }

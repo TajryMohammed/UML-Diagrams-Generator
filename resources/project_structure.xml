@@ -1,102 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Projects>
-	<package name="org.mql.java.actions">
-		<class name="FileAction">
-			<method name="open" return-type="String" modifierType="-"/>
-			<method name="saveAs" return-type="String" modifierType="-"/>
-			<method name="FileAction" return-type="null" modifierType="-"/>
-			<method name="newFile" return-type="String" modifierType="-"/>
-			<method name="exit" return-type="String" modifierType="-"/>
-			<method name="save" return-type="String" modifierType="-"/>
-		</class>
-		<class name="EditAction">
-			<method name="EditAction" return-type="null" modifierType="-"/>
-			<method name="paste" return-type="String" modifierType="-"/>
-			<method name="cut" return-type="String" modifierType="-"/>
-			<method name="copy" return-type="String" modifierType="-"/>
-		</class>
-	</package>
-	<package name="org.mql.java.reflection">
-		<class name="Examples">
-			<method name="exp08" return-type="void" modifierType="~"/>
-			<method name="exp07" return-type="void" modifierType="~"/>
-			<method name="exp06" return-type="void" modifierType="~"/>
-			<method name="exp05" return-type="void" modifierType="~"/>
-			<method name="main" return-type="void" modifierType="~"/>
-			<method name="exp04" return-type="void" modifierType="~"/>
-			<method name="Examples" return-type="null" modifierType="-"/>
-			<method name="exp02" return-type="void" modifierType="~"/>
-			<method name="exp03" return-type="void" modifierType="~"/>
-			<method name="exp01" return-type="void" modifierType="~"/>
-		</class>
-		<class name="PackageExplorer">
-			<method name="scanWithClassLoader" return-type="String[]" modifierType="~"/>
-			<method name="scan" return-type="String[]" modifierType="~"/>
-			<method name="PackageExplorer" return-type="null" modifierType="-"/>
-		</class>
-		<class name="FormGenerator">
-			<method name="FormGenerator" return-type="null" modifierType="-"/>
-			<method name="generate" return-type="Form" modifierType="~"/>
-		</class>
-	</package>
-	<package name="org.mql.java.ui">
-		<class name="Form">
-			<attribute name="labelSize" type="int" modifierType="+"/>
-			<attribute name="serialVersionUID" type="long" modifierType="~"/>
-			<attribute name="container" type="JPanel" modifierType="+"/>
-			<method name="add" return-type="void" modifierType="-"/>
-			<method name="Form" return-type="null" modifierType="-"/>
-		</class>
-		<class name="ItemListener">
-			<attribute name="method" type="Method" modifierType="+"/>
-			<attribute name="controller" type="Object" modifierType="+"/>
-			<method name="ItemListener" return-type="null" modifierType="-"/>
-			<method name="actionPerformed" return-type="void" modifierType="-"/>
-		</class>
-		<class name="Menu">
-			<attribute name="serialVersionUID" type="long" modifierType="~"/>
-			<attribute name="type" type="String" modifierType="+"/>
-			<attribute name="iconsPath" type="String" modifierType="+"/>
-			<method name="Menu" return-type="null" modifierType="-"/>
-			<method name="CreerMenu" return-type="void" modifierType="~"/>
-			<method name="add" return-type="void" modifierType="-"/>
-			<method name="Menu" return-type="null" modifierType="-"/>
-			<method name="add" return-type="void" modifierType="-"/>
-		</class>
-		<class name="LabeledTextField">
-			<attribute name="serialVersionUID" type="long" modifierType="~"/>
-			<method name="LabeledTextField" return-type="null" modifierType="-"/>
-			<method name="LabeledTextField" return-type="null" modifierType="-"/>
-		</class>
-	</package>
-	<package name="org.mql.java.models">
-		<interface name="Teeeest">
+	<package name="packageone">
+		<interface name="Animal">
+			<method name="makeSound" parameters="" return-type="void" modifierType="~"/>
 		</interface>
-		<class name="Author">
-			<attribute name="name" type="String" modifierType="+"/>
-			<attribute name="yearBorn" type="int" modifierType="+"/>
-			<attribute name="technology" type="String" modifierType="+"/>
-			<attribute name="id" type="int" modifierType="+"/>
-			<method name="Author" return-type="null" modifierType="-"/>
-			<method name="getId" return-type="int" modifierType="-"/>
-			<method name="setTechnology" return-type="void" modifierType="-"/>
-			<method name="setYearBorn" return-type="void" modifierType="-"/>
-			<method name="setId" return-type="void" modifierType="-"/>
-			<method name="getTechnology" return-type="String" modifierType="-"/>
-			<method name="getYearBorn" return-type="int" modifierType="-"/>
-			<method name="Author" return-type="null" modifierType="-"/>
-			<method name="toString" return-type="String" modifierType="-"/>
-			<method name="setName" return-type="void" modifierType="-"/>
-			<method name="getName" return-type="String" modifierType="-"/>
-		</class>
-		<class name="Document">
-			<attribute name="id" type="int" modifierType="+"/>
-			<attribute name="title" type="String" modifierType="+"/>
-			<attribute name="yearPublished" type="int" modifierType="+"/>
-			<attribute name="publisher" type="String" modifierType="+"/>
-			<method name="Document" return-type="null" modifierType="-"/>
+		<interface name="Movable">
+			<method name="move" parameters="" return-type="void" modifierType="~"/>
+		</interface>
+	</package>
+	<package name="packagethree">
+		<class name="Main" ImplementedInterfaces="null" SuperClass="Object">
+			<method name="main" parameters="String[]" return-type="void" modifierType="~"/>
+			<method name="Main" parameters="" return-type="" modifierType="-"/>
 		</class>
 	</package>
-	<package name="org.mql.java.annotations">
+	<package name="packagetwo">
+		<class name="LivingBeing" ImplementedInterfaces="null" SuperClass="Object">
+			<method name="LivingBeing" parameters="" return-type="" modifierType="-"/>
+			<method name="breathe" parameters="" return-type="void" modifierType="~"/>
+		</class>
+		<class name="Penguin" ImplementedInterfaces="null" SuperClass="Bird">
+			<method name="Penguin" parameters="" return-type="" modifierType="-"/>
+			<method name="makeSound" parameters="" return-type="void" modifierType="-"/>
+		</class>
+		<class name="Mammal" ImplementedInterfaces="null" SuperClass="LivingBeing">
+			<method name="makeSound" parameters="" return-type="void" modifierType="-"/>
+			<method name="Mammal" parameters="" return-type="" modifierType="-"/>
+		</class>
+		<class name="Bird" ImplementedInterfaces="null" SuperClass="LivingBeing">
+			<method name="move" parameters="" return-type="void" modifierType="-"/>
+			<method name="makeSound" parameters="" return-type="void" modifierType="-"/>
+			<method name="Bird" parameters="" return-type="" modifierType="-"/>
+		</class>
+		<class name="Lion" ImplementedInterfaces="null" SuperClass="Mammal">
+			<method name="makeSound" parameters="" return-type="void" modifierType="-"/>
+			<method name="Lion" parameters="" return-type="" modifierType="-"/>
+		</class>
+		<class name="Zoo" ImplementedInterfaces="null" SuperClass="Object">
+			<attribute name="name" type="String" modifierType="+"/>
+			<method name="Zoo" parameters="String" return-type="" modifierType="~"/>
+			<method name="visit" parameters="" return-type="void" modifierType="~"/>
+			<method name="addAnimal" parameters="Animal" return-type="void" modifierType="~"/>
+		</class>
 	</package>
 </Projects>
